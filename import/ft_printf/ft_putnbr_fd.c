@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aoperacz <aoperacz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: arkadiusz <arkadiusz@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 20:58:11 by aoperacz          #+#    #+#             */
-/*   Updated: 2024/12/14 14:19:47 by aoperacz         ###   ########.fr       */
+/*   Updated: 2025/03/30 19:54:59 by arkadiusz        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_putnbr_fd(int n, int fd)
+int	ft_putnbr_fd1(int n, int fd)
 {
 	unsigned int	num;
 	int				i;

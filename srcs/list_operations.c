@@ -6,13 +6,13 @@
 /*   By: arkadiusz <arkadiusz@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 12:29:16 by aoperacz          #+#    #+#             */
-/*   Updated: 2025/03/23 10:59:32 by arkadiusz        ###   ########.fr       */
+/*   Updated: 2025/04/10 18:08:05 by arkadiusz        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include "libft.h"
-#include "printf.h"
+#include "ft_printf.h"
 
 void	append(t_node **node, int value)
 {
@@ -31,22 +31,32 @@ void	append(t_node **node, int value)
 		return ;
 	}
 	temp = *node;
-	while (temp != NULL)
+	while (temp->next != NULL)
 		temp = temp->next;
 	temp->next = new_node;
 }
 
-int	pop(t_node **node)
+bool	pop(t_node **node, int *value)
 {
 	t_node	*temp;
-	int		value;
+	t_node	*prev;
 
+	if (*node == NULL)
+		return (false);
 	temp = *node;
+	prev = NULL;
 	while (temp->next != NULL)
+	{
+		prev = temp;
 		temp = temp->next;
-	value = temp->value;
+	}
+	*value = temp->value;
+	if (prev == NULL)
+		*node = NULL;
+	else
+		prev->next = NULL;
 	free(temp);
-	return (value);
+	return (true);
 }
 
 t_node	*create_node(int value)
@@ -55,7 +65,7 @@ t_node	*create_node(int value)
 
 	new_node = malloc(sizeof(t_node));
 	if (!new_node)
-		return ;
+		return (NULL);
 	new_node->value = value;
 	new_node->next = NULL;
 	return (new_node);

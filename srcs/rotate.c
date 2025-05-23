@@ -6,13 +6,33 @@
 /*   By: arkadiusz <arkadiusz@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/20 10:59:02 by arkadiusz         #+#    #+#             */
-/*   Updated: 2025/03/23 11:02:24 by arkadiusz        ###   ########.fr       */
+/*   Updated: 2025/04/10 21:56:38 by arkadiusz        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "ft_printf.h"
 #include "libft.h"
-#include "printf.h"
+#include "push_swap.h"
+
+void	reverse_rotate(t_node **head, int print_flag)
+{
+	t_node	*temp;
+	t_node	*first;
+
+	if (*head == NULL || (*head)->next == NULL)
+		return ;
+	first = *head;
+	*head = (*head)->next;
+	first->next = NULL;
+	temp = *head;
+	while (temp->next != NULL)
+		temp = temp->next;
+	temp->next = first;
+	if (print_flag == 1)
+		ft_printf("rra\n");
+	if (print_flag == 2)
+		ft_printf("rrb\n");
+}
 
 void	rotate(t_node **head, int print_flag)
 {
@@ -29,33 +49,11 @@ void	rotate(t_node **head, int print_flag)
 	last = temp->next;
 	temp->next = NULL;
 	last->next = first;
-	*head = last->next;
-	first->next = NULL;
-	temp->next = first;
+	*head = last;
 	if (print_flag == 1)
 		ft_printf("ra\n");
 	if (print_flag == 2)
 		ft_printf("rb\n");
-}
-
-void	reverse_rotate(t_node **head, int print_flag)
-{
-	t_node	*temp;
-	t_node	*last;
-
-	if (*head == NULL || (*head)->next == NULL)
-		return ;
-	temp = *head;
-	last = *head;
-	*head = (*head)->next;
-	last->next = NULL;
-	while (temp->next != NULL)
-		temp = temp->next;
-	temp->next = last;
-	if (print_flag == 1)
-		ft_printf("rra\n");
-	if (print_flag == 2)
-		ft_printf("rrb\n");
 }
 
 void	rr(t_node **head_a, t_node **head_b)

@@ -1,33 +1,36 @@
-NAME = push_swap
+NAME = a.out
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -g $(INCLUDES)
 
 SRCS = srcs
-OBJS = objs
 IMPS = import
 INCL = header
 
 LIBFT = $(IMPS)/libft
 FT_PRINTF = $(IMPS)/ft_printf
 
-SRC = list_operations.c \
-	main.c \
-	push_swap.c \
-	rotate.c \
-	utils.c \
+SRC = $(SRCS)/list_operations.c \
+      $(SRCS)/main.c \
+      $(SRCS)/push_swap.c \
+      $(SRCS)/rotate.c \
+      $(SRCS)/utils.c
+
 
 OBJ = $(SRC:.c=.o)
 
-INCLUDES = -I$(INCL) -I$(LIBFT) -I$(FT_PRINTF)/$(INCL)
+INCLUDES = -I$(INCL) -I$(LIBFT) -I$(FT_PRINTF)
 
-LIBS = -L$(LIBFT) -lft -L$(FT_PRINTF) -lftprintf
+LIBS =-L$(FT_PRINTF) -lftprintf -L$(LIBFT) -lft 
 
 all: $(NAME)
 
 $(NAME): $(OBJ)
 	$(MAKE) -C $(LIBFT)
 	$(MAKE) -C $(FT_PRINTF)
-	ar rc $(CC) $(CFLAGS) $(NAME) $(OBJ)
+	$(CC) $(CFLAGS)  $(OBJ) $(LIBS) -o $(NAME)
+
+%.o: %.c
+	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
 	rm -f $(OBJ)
@@ -41,4 +44,4 @@ fclean: clean
 
 re: fclean $(NAME)
 
-.PHONY all clean fclean re
+.PHONY: all clean fclean re
