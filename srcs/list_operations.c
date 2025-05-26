@@ -6,7 +6,7 @@
 /*   By: arkadiusz <arkadiusz@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 12:29:16 by aoperacz          #+#    #+#             */
-/*   Updated: 2025/04/10 18:08:05 by arkadiusz        ###   ########.fr       */
+/*   Updated: 2025/05/24 21:20:37 by arkadiusz        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ t_node	*create_node(int value)
 	if (!new_node)
 		return (NULL);
 	new_node->value = value;
+	new_node->index = -1;
 	new_node->next = NULL;
 	return (new_node);
 }
