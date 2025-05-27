@@ -6,7 +6,7 @@
 /*   By: arkadiusz <arkadiusz@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 12:29:16 by aoperacz          #+#    #+#             */
-/*   Updated: 2025/05/24 21:20:37 by arkadiusz        ###   ########.fr       */
+/*   Updated: 2025/05/27 18:49:59 by arkadiusz        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "libft.h"
 #include "ft_printf.h"
 
-void	append(t_node **node, int value)
+void	append(t_node **node, int value, int index)
 {
 	t_node	*new_node;
 	t_node	*temp;
@@ -34,6 +34,7 @@ void	append(t_node **node, int value)
 	while (temp->next != NULL)
 		temp = temp->next;
 	temp->next = new_node;
+	new_node->index = index;
 }
 
 bool	pop(t_node **node, int *value)

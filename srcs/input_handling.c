@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   errors.c                                           :+:      :+:    :+:   */
+/*   input_handling.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: arkadiusz <arkadiusz@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 18:02:03 by arkadiusz         #+#    #+#             */
-/*   Updated: 2025/05/19 14:12:26 by arkadiusz        ###   ########.fr       */
+/*   Updated: 2025/05/26 22:13:21 by arkadiusz        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,4 +47,23 @@ bool	exeeding_limit(char *av)
 	else if (ft_strncmp(av, max_int, ft_strlen(av)) > 0 && ft_strlen(av) == 10)
 		return (true);
 	return (false);
+}
+
+bool	correct_format_check(char *av)
+{
+	int	i;
+
+	i = 0;
+	while (av[i])
+	{
+		if (av[i] == '"')
+			return (false);
+		i++;
+	}
+	return (true);
+}
+
+bool	dup_check(t_node *list)
+{
+	
 }

@@ -13,7 +13,8 @@ SRC = $(SRCS)/list_operations.c \
       $(SRCS)/main.c \
       $(SRCS)/push_swap.c \
       $(SRCS)/rotate.c \
-      $(SRCS)/utils.c
+      $(SRCS)/utils.c\
+	  $(SRCS)/radix_sort.c
 
 
 OBJ = $(SRC:.c=.o)
