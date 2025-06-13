@@ -6,7 +6,7 @@
 /*   By: arkadiusz <arkadiusz@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/23 19:24:14 by arkadiusz         #+#    #+#             */
-/*   Updated: 2025/05/26 20:13:45 by arkadiusz        ###   ########.fr       */
+/*   Updated: 2025/06/12 17:37:01 by arkadiusz        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,4 +50,28 @@ int	num_of_nodes(t_node *head)
 		i++;
 	}
 	return (i);
+}
+
+void	append_new(t_node **node, int value, int index)
+{
+	t_node	*new_node;
+	t_node	*temp;
+
+	new_node = create_node(value);
+	if (!new_node)
+	{
+		free_list(*node);
+		return ;
+	}
+	new_node->index = index;
+	new_node->next = NULL;
+	if (*node == NULL)
+	{
+		*node = new_node;
+		return ;
+	}
+	temp = *node;
+	while (temp->next != NULL)
+		temp = temp->next;
+	temp->next = new_node;
 }

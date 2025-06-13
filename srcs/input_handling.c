@@ -6,7 +6,7 @@
 /*   By: arkadiusz <arkadiusz@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 18:02:03 by arkadiusz         #+#    #+#             */
-/*   Updated: 2025/05/26 22:13:21 by arkadiusz        ###   ########.fr       */
+/*   Updated: 2025/06/12 19:33:02 by arkadiusz        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "libft.h"
 #include "push_swap.h"
 
-bool	is_number(char *av)
+int	is_number(char *av)
 {
 	int	i;
 
@@ -24,13 +24,13 @@ bool	is_number(char *av)
 	while (av[i])
 	{
 		if (ft_isdigit(av[i]) == 0)
-			return (false);
+			return (0);
 		i++;
 	}
-	return (true);
+	return (1);
 }
 
-bool	exeeding_limit(char *av)
+int	exeeding_limit(char *av)
 {
 	char	*max_int;
 	char	*min_int;
@@ -38,18 +38,18 @@ bool	exeeding_limit(char *av)
 	*max_int = "2147483647";
 	*min_int = "-2147483648";
 	if (ft_strlen(*av) > 11)
-		return (true);
+		return (1);
 	if (av[0] == '-' && ft_strlen(av) == 11)
 	{
 		if (strncmp(av, min_int, ft_strlen(av)) > 0)
-			return (true);
+			return (1);
 	}
 	else if (ft_strncmp(av, max_int, ft_strlen(av)) > 0 && ft_strlen(av) == 10)
-		return (true);
-	return (false);
+		return (1);
+	return (0);
 }
 
-bool	correct_format_check(char *av)
+int	correct_format_check(char *av)
 {
 	int	i;
 
@@ -57,13 +57,13 @@ bool	correct_format_check(char *av)
 	while (av[i])
 	{
 		if (av[i] == '"')
-			return (false);
+			return (0);
 		i++;
 	}
-	return (true);
+	return (1);
 }
 
-bool	dup_check(t_node *list)
+int	dup_check(t_node *list)
 {
 	
 }

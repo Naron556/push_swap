@@ -6,18 +6,17 @@
 /*   By: arkadiusz <arkadiusz@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 12:29:16 by aoperacz          #+#    #+#             */
-/*   Updated: 2025/05/27 18:49:59 by arkadiusz        ###   ########.fr       */
+/*   Updated: 2025/06/12 18:57:30 by arkadiusz        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
-#include "libft.h"
 #include "ft_printf.h"
+#include "libft.h"
+#include "push_swap.h"
 
 void	append(t_node **node, int value, int index)
 {
 	t_node	*new_node;
-	t_node	*temp;
 
 	new_node = create_node(value);
 	if (!new_node)
@@ -25,39 +24,22 @@ void	append(t_node **node, int value, int index)
 		free_list(*node);
 		return ;
 	}
-	if (*node == NULL)
-	{
-		*node = new_node;
-		return ;
-	}
-	temp = *node;
-	while (temp->next != NULL)
-		temp = temp->next;
-	temp->next = new_node;
 	new_node->index = index;
+	new_node->next = *node;
+	*node = new_node;
 }
 
-bool	pop(t_node **node, int *value)
+int	pop(t_node **node, int *value)
 {
 	t_node	*temp;
-	t_node	*prev;
 
 	if (*node == NULL)
-		return (false);
+		return (0);
 	temp = *node;
-	prev = NULL;
-	while (temp->next != NULL)
-	{
-		prev = temp;
-		temp = temp->next;
-	}
 	*value = temp->value;
-	if (prev == NULL)
-		*node = NULL;
-	else
-		prev->next = NULL;
+	*node = temp->next;
 	free(temp);
-	return (true);
+	return (1);
 }
 
 t_node	*create_node(int value)
