@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   input_handling.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arkadiusz <arkadiusz@student.42.fr>        +#+  +:+       +#+        */
+/*   By: yamohamm <yasnaadli21@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 18:02:03 by arkadiusz         #+#    #+#             */
-/*   Updated: 2025/06/19 23:04:08 by arkadiusz        ###   ########.fr       */
+/*   Updated: 2025/06/20 00:00:43 by yamohamm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,10 @@ int	is_number(char *av)
 	int	i;
 
 	i = 0;
-	if ((av[i] && av[i] == '-') || (av[i] && av[i] == '+'))
+	if ( ((av[i] && av[i] == '-') || (av[i] && av[i] == '+')) && av[i+1] != '\0')
 		i++;
+	else if (((av[i] && av[i] == '-') || (av[i] && av[i] == '+')) && av[i+1] == '\0')
+		return (0);
 	while (av[i])
 	{
 		if (ft_isdigit(av[i]) == 0)
@@ -78,7 +80,7 @@ void	dup_check(t_node *head)
 		{
 			if (current->value == checker->value)
 			{
-				ft_printf("Error\n");
+				write(STDERR_FILENO,"Error\n",6);
 				free_list(head);
 				exit(1);
 			}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arkadiusz <arkadiusz@student.42.fr>        +#+  +:+       +#+        */
+/*   By: yamohamm <yasnaadli21@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 10:07:43 by aoperacz          #+#    #+#             */
-/*   Updated: 2025/06/19 23:12:47 by arkadiusz        ###   ########.fr       */
+/*   Updated: 2025/06/20 00:04:10 by yamohamm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 #include "libft.h"
 #include "push_swap.h"
 
-void	free_ft_split(char **str)
+void free_ft_split(char **str)
 {
-	int	i;
+	int i;
 
 	i = 0;
 	while (str[i])
@@ -26,23 +26,21 @@ void	free_ft_split(char **str)
 	free(str);
 }
 
-t_node	*fill_list(int ac, char **av)
+t_node *fill_list(int ac, char **av)
 {
-	t_node	*stack_a;
-	int		value;
-	int		i;
+	t_node *stack_a;
+	int value;
+	int i;
 
 	i = 0;
-	if (ac == 0)
-	{
-		ac = amount_of_str(av[0], ' ') - 1;
-		av = ft_split(av[0], ' ');
-	}
+	if (*av == NULL)
+		return NULL;
+
 	stack_a = NULL;
 	value = ft_atoi(av[i]);
 	i++;
 	stack_a = create_node(value);
-	while (i <= ac)
+	while (i < ac)
 	{
 		value = ft_atoi(av[i]);
 		append_new(&stack_a, value, -1);
@@ -51,41 +49,39 @@ t_node	*fill_list(int ac, char **av)
 	return (stack_a);
 }
 
-t_node	*input_final(int ac, char **av)
+t_node *input_final(int ac, char **av)
 {
-	int		i;
-	int		flag;
-	t_node	*list;
+	int i;
+	int flag;
+	t_node *list;
 
 	i = -1;
 	flag = ac;
 	list = NULL;
-	if (ac == 0)
+	if (ac == 1)
 	{
-		ac = amount_of_str(av[0], ' ') - 1;
+		ac = amount_of_str(av[0], ' ');
 		av = ft_split(av[0], ' ');
 	}
-	while (++i <= ac)
-		if (!is_number(av[i]) || exeeding_limit(av[i])
-			|| !correct_format_check(av[i]))
+	while (++i < ac)
+		if (av == NULL || !is_number(av[i]) || exeeding_limit(av[i]) || !correct_format_check(av[i]))
 		{
-			ft_printf("Error\n");
-			if(flag == 0)
+			if (flag == 1)
 				free_ft_split(av);
 			return (list);
 		}
 	list = fill_list(ac, av);
-	if (flag == 0)
+	if (flag == 1)
 		free_ft_split(av);
 	return (list);
 }
 
-void	print_stack(t_node *stack)
+void print_stack(t_node *stack)
 {
 	if (!stack)
 	{
 		ft_printf("404 Stack not found\n");
-		return ;
+		return;
 	}
 	while (stack)
 	{
@@ -94,21 +90,22 @@ void	print_stack(t_node *stack)
 	}
 }
 
-int	main(int argc, char **argv)
+int main(int argc, char **argv)
 {
-	t_node	*list_a;
-	t_node	*list_b;
+	t_node *list_a;
+	t_node *list_b;
 
 	list_b = NULL;
 	if (argc < 2)
-		return (ft_printf("Error\n"), 0);
-	argc--;
+		return (write(STDERR_FILENO,"Error\n",6), 1);
 	argv++;
 	list_a = input_final(argc - 1, argv);
 	if (list_a == NULL)
-		return (1);
+		return (write(STDERR_FILENO,"Error\n",6), 1);
 	dup_check(list_a);
 	assign_index(&list_a);
+	if(is_sorted(list_a))
+		return(0);
 	if (num_of_nodes(list_a) == 2)
 		sort_two(&list_a);
 	else if (num_of_nodes(list_a) == 3)
@@ -117,7 +114,6 @@ int	main(int argc, char **argv)
 		sort_fo_five(&list_a, &list_b);
 	else
 		radix(&list_a, &list_b);
-	// print_stack(list_a);
 	free_list(list_a);
 	free_list(list_b);
 	return (0);

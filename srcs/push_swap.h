@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arkadiusz <arkadiusz@student.42.fr>        +#+  +:+       +#+        */
+/*   By: yamohamm <yasnaadli21@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 10:08:14 by aoperacz          #+#    #+#             */
-/*   Updated: 2025/06/19 21:54:22 by arkadiusz        ###   ########.fr       */
+/*   Updated: 2025/06/20 00:03:07 by yamohamm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,5 +49,6 @@ int					is_number(char *av);
 int					exeeding_limit(char *av);
 int					correct_format_check(char *av);
 void				dup_check(t_node *head);
+int					is_sorted(t_node *head_a);
 
 #endif
