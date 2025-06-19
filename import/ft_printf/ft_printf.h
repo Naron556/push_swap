@@ -6,7 +6,7 @@
 /*   By: arkadiusz <arkadiusz@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 20:39:59 by aoperacz          #+#    #+#             */
-/*   Updated: 2025/03/29 20:00:42 by arkadiusz        ###   ########.fr       */
+/*   Updated: 2025/06/19 22:13:12 by arkadiusz        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int		ft_putchar_fd1(char c, int fd);
 int		ft_putnbr_fd1(int n, int fd);
 int		ft_hex(unsigned long n);
 int		ft_hexx(unsigned long n);
-size_t	ft_strlen(const char *s);
+size_t	ft_strl(const char *s);
 int		ft_putstr_fd1(char *s, int fd);
 int		ft_put_u_nbr(unsigned int n);
 int		hexlen(unsigned long n);

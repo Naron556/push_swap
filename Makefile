@@ -1,4 +1,4 @@
-NAME = a.out
+NAME = push_swap
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror -g $(INCLUDES)
 
@@ -15,7 +15,8 @@ SRC = $(SRCS)/list_operations.c \
       $(SRCS)/rotate.c \
       $(SRCS)/utils.c \
 	  $(SRCS)/radix_sort.c \
-	  $(SRCS)/sort_small.c
+	  $(SRCS)/sort_small.c \
+	  $(SRCS)/input_handling.c
 
 
 OBJ = $(SRC:.c=.o)

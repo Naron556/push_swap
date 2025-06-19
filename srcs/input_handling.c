@@ -6,7 +6,7 @@
 /*   By: arkadiusz <arkadiusz@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 18:02:03 by arkadiusz         #+#    #+#             */
-/*   Updated: 2025/06/12 19:33:02 by arkadiusz        ###   ########.fr       */
+/*   Updated: 2025/06/19 23:04:08 by arkadiusz        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	is_number(char *av)
 	int	i;
 
 	i = 0;
-	if (av[i] && av[i] == '-' || av[i] && av[i] == '+')
+	if ((av[i] && av[i] == '-') || (av[i] && av[i] == '+'))
 		i++;
 	while (av[i])
 	{
@@ -35,9 +35,9 @@ int	exeeding_limit(char *av)
 	char	*max_int;
 	char	*min_int;
 
-	*max_int = "2147483647";
-	*min_int = "-2147483648";
-	if (ft_strlen(*av) > 11)
+	max_int = "2147483647";
+	min_int = "-2147483648";
+	if (ft_strlen(av) > 11)
 		return (1);
 	if (av[0] == '-' && ft_strlen(av) == 11)
 	{
@@ -54,6 +54,8 @@ int	correct_format_check(char *av)
 	int	i;
 
 	i = 0;
+	if (av[0] == '\0')
+		return (0);
 	while (av[i])
 	{
 		if (av[i] == '"')
@@ -63,7 +65,25 @@ int	correct_format_check(char *av)
 	return (1);
 }
 
-int	dup_check(t_node *list)
+void	dup_check(t_node *head)
 {
-	
+	t_node	*current;
+	t_node	*checker;
+
+	current = head;
+	while (current != NULL)
+	{
+		checker = current->next;
+		while (checker != NULL)
+		{
+			if (current->value == checker->value)
+			{
+				ft_printf("Error\n");
+				free_list(head);
+				exit(1);
+			}
+			checker = checker->next;
+		}
+		current = current->next;
+	}
 }

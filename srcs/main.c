@@ -6,7 +6,7 @@
 /*   By: arkadiusz <arkadiusz@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 10:07:43 by aoperacz          #+#    #+#             */
-/*   Updated: 2025/06/12 21:06:40 by arkadiusz        ###   ########.fr       */
+/*   Updated: 2025/06/19 23:12:47 by arkadiusz        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,8 @@ t_node	*fill_list(int ac, char **av)
 {
 	t_node	*stack_a;
 	int		value;
-	int		flag;
 	int		i;
 
-	flag = ac;
 	i = 0;
 	if (ac == 0)
 	{
@@ -50,21 +48,38 @@ t_node	*fill_list(int ac, char **av)
 		append_new(&stack_a, value, -1);
 		i++;
 	}
-	if (flag == 0)
-		free_ft_split(av);
 	return (stack_a);
 }
 
-// void	print_list(t_node *list_a)
-// {
-// 	write(1, "\n", 1);
-// 	while (list_a != NULL)
-// 	{
-// 		ft_printf("%i ", list_a->value);
-// 		list_a = list_a->next;
-// 	}
-// 	write(1, "\n", 1);
-// }
+t_node	*input_final(int ac, char **av)
+{
+	int		i;
+	int		flag;
+	t_node	*list;
+
+	i = -1;
+	flag = ac;
+	list = NULL;
+	if (ac == 0)
+	{
+		ac = amount_of_str(av[0], ' ') - 1;
+		av = ft_split(av[0], ' ');
+	}
+	while (++i <= ac)
+		if (!is_number(av[i]) || exeeding_limit(av[i])
+			|| !correct_format_check(av[i]))
+		{
+			ft_printf("Error\n");
+			if(flag == 0)
+				free_ft_split(av);
+			return (list);
+		}
+	list = fill_list(ac, av);
+	if (flag == 0)
+		free_ft_split(av);
+	return (list);
+}
+
 void	print_stack(t_node *stack)
 {
 	if (!stack)
@@ -86,18 +101,23 @@ int	main(int argc, char **argv)
 
 	list_b = NULL;
 	if (argc < 2)
-		return (0);
-	// if (argc > 2)
-	// {
-	// }
+		return (ft_printf("Error\n"), 0);
 	argc--;
 	argv++;
-	list_a = fill_list(argc - 1, argv);
+	list_a = input_final(argc - 1, argv);
+	if (list_a == NULL)
+		return (1);
+	dup_check(list_a);
 	assign_index(&list_a);
-	print_stack(list_a);
-	// radix(&list_a, &list_b);
-	sort_fo_five(&list_a, &list_b);
-	print_stack(list_a);
+	if (num_of_nodes(list_a) == 2)
+		sort_two(&list_a);
+	else if (num_of_nodes(list_a) == 3)
+		sort_three(&list_a);
+	else if (num_of_nodes(list_a) <= 5)
+		sort_fo_five(&list_a, &list_b);
+	else
+		radix(&list_a, &list_b);
+	// print_stack(list_a);
 	free_list(list_a);
 	free_list(list_b);
 	return (0);

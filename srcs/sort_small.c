@@ -6,7 +6,7 @@
 /*   By: arkadiusz <arkadiusz@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 19:41:38 by arkadiusz         #+#    #+#             */
-/*   Updated: 2025/06/12 21:09:20 by arkadiusz        ###   ########.fr       */
+/*   Updated: 2025/06/19 22:45:15 by arkadiusz        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,14 +38,14 @@ void	sort_three(t_node **head_a)
 		reverse_rotate(head_a, 1);
 	else if (one < three && three < two)
 	{
-		rotate(head_a, 1);
+		reverse_rotate(head_a, 1);
 		swap(head_a, 1);
 	}
 	else if (two < three && three < one)
 		rotate(head_a, 1);
 	else if (three < two && two < one)
 	{
-		reverse_rotate(head_a, 1);
+		rotate(head_a, 1);
 		swap(head_a, 1);
 	}
 }

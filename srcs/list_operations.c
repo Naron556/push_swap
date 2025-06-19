@@ -6,12 +6,11 @@
 /*   By: arkadiusz <arkadiusz@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 12:29:16 by aoperacz          #+#    #+#             */
-/*   Updated: 2025/06/12 18:57:30 by arkadiusz        ###   ########.fr       */
+/*   Updated: 2025/06/19 22:11:08 by arkadiusz        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include "libft.h"
 #include "push_swap.h"
 
 void	append(t_node **node, int value, int index)
