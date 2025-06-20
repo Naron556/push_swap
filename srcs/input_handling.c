@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   errors.c                                           :+:      :+:    :+:   */
+/*   input_handling.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arkadiusz <arkadiusz@student.42.fr>        +#+  +:+       +#+        */
+/*   By: aoperacz <aoperacz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 18:02:03 by arkadiusz         #+#    #+#             */
-/*   Updated: 2025/05/19 14:12:26 by arkadiusz        ###   ########.fr       */
+/*   Updated: 2025/05/24 19:10:39 by aoperacz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,13 @@ bool	exeeding_limit(char *av)
 		return (true);
 	if (av[0] == '-' && ft_strlen(av) == 11)
 	{
-		if (strncmp(av, min_int, ft_strlen(av)) > 0)
+		if (ft_strncmp(av, min_int, ft_strlen(av)) > 0)
 			return (true);
 	}
 	else if (ft_strncmp(av, max_int, ft_strlen(av)) > 0 && ft_strlen(av) == 10)
+		return (true);
+	else if (ft_strncmp(av, max_int, ft_strlen(av)) > 0 && ft_strlen(av) == 11
+		&& av[0] == '+')
 		return (true);
 	return (false);
 }

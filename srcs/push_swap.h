@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arkadiusz <arkadiusz@student.42.fr>        +#+  +:+       +#+        */
+/*   By: aoperacz <aoperacz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 10:08:14 by aoperacz          #+#    #+#             */
-/*   Updated: 2025/04/01 20:09:28 by arkadiusz        ###   ########.fr       */
+/*   Updated: 2025/05/23 19:24:56 by aoperacz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,12 @@
 # include <stdlib.h>
 # include <string.h>
 # include <stdbool.h>
+# include <limits.h>
 
 typedef struct s_node
 {
 	int				value;
+	int				index;
 	struct s_node	*next;
 }					t_node;
 

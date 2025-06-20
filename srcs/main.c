@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arkadiusz <arkadiusz@student.42.fr>        +#+  +:+       +#+        */
+/*   By: aoperacz <aoperacz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 10:07:43 by aoperacz          #+#    #+#             */
-/*   Updated: 2025/05/22 21:22:47 by arkadiusz        ###   ########.fr       */
+/*   Updated: 2025/05/23 18:02:31 by aoperacz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ t_node	*fill_list(int ac, char **av)
 		ac = amount_of_str(av[0], ' ') - 1;
 		av = ft_split(av[0], ' ');
 	}
-	// check_input all line
 	stack_a = NULL;
 	value = ft_atoi(av[ac]);
 	ac--;
